@@ -19,7 +19,8 @@ class CreateTablePetugas extends Migration
             $table->string('alamat', 100);
             $table->string('telp', 100);
             $table->string('username', 50);
-            $table->string('password', 100);
+            $table->string('password', 100); 
+            $table->string('level', 200);
             $table->timestamps();
         });
     }
