@@ -39,3 +39,9 @@ Route::get('/anggota', 'anggota@tampil')->middleware('jwt.verify');
 Route::put('/anggota/{id}', 'anggota@update')->middleware('jwt.verify');
 Route::delete('/anggota/{id}', 'anggota@delete')->middleware('jwt.verify');
 Route::post('/anggota', 'anggota@store')->middleware('jwt.verify');
+
+// PEMINJAMAN \\
+Route::get('Peminjaman/{id}', 'Peminjaman@tampil_pinjam')->middleware('jwt.verify');
+Route::put('/Peminjaman/{id}', 'Peminjaman@update')->middleware('jwt.verify');
+Route::delete('/Peminjaman/{id}', 'Peminjaman@delete')->middleware('jwt.verify');
+Route::post('/Peminjaman', 'Peminjaman@store')->middleware('jwt.verify');
