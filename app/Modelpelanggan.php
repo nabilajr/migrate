@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Modelanggota extends Model
 {
-    protected $table="anggota";
-    protected $primarykey="id_anggota";
+    protected $table="pelanggan";
+    protected $primarykey="id_pelanggan";
          protected $fillable = [
-        'nama_anggota', 'telp', 'alamat', 
+        'nama', 'alamat', 'telp', 
      ];
     public $timestamps=false;
 }

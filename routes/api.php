@@ -19,29 +19,25 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register', 'UserController@register');
 Route::post('login', 'UserController@login');
-Route::get('book', 'BookController@book');
-Route::get('bookall', 'BookController@bookAuth')->middleware('jwt.verify');
 Route::get('user', 'UserController@getAuthenticatedUser')->middleware('jwt.verify');
 
-// BUKU \\
-Route::get('/buku', 'buku@tampil')->middleware('jwt.verify');
-Route::put('/buku/{id}', 'buku@update')->middleware('jwt.verify');
-Route::delete('/buku/{id}', 'buku@delete')->middleware('jwt.verify');
-Route::post('/buku', 'buku@store')->middleware('jwt.verify');
+
 
 // PETUGAS \\
 Route::get('/petugas', 'petugas@login');
+Route::get('/tampilpetugas', 'petugas@tampilpetugas')->middleware('jwt_ok');
+Route::post('/petugas', 'petugas@register');
 Route::put('/petugas/{id}', 'petugas@update');
 Route::delete('/petugas/{id}', 'petugas@delete');
 
-// ANGGOTA \\
-Route::get('/anggota', 'anggota@tampil')->middleware('jwt.verify');
-Route::put('/anggota/{id}', 'anggota@update')->middleware('jwt.verify');
-Route::delete('/anggota/{id}', 'anggota@delete')->middleware('jwt.verify');
-Route::post('/anggota', 'anggota@store')->middleware('jwt.verify');
+// pelanggan \\
+Route::get('/pelanggan', 'pelanggan@tampil')->middleware('jwt.verify');
+Route::put('/pelanggan/{id}', 'pelanggan@update')->middleware('jwt.verify');
+Route::delete('/pelanggan/{id}', 'pelanggan@delete')->middleware('jwt.verify');
+Route::post('/pelanggan', 'pelanggan@store')->middleware('jwt.verify');
 
-// PEMINJAMAN \\
-Route::get('Peminjaman/{id}', 'Peminjaman@tampil_pinjam')->middleware('jwt.verify');
-Route::put('/Peminjaman/{id}', 'Peminjaman@update')->middleware('jwt.verify');
-Route::delete('/Peminjaman/{id}', 'Peminjaman@delete')->middleware('jwt.verify');
-Route::post('/Peminjaman', 'Peminjaman@store')->middleware('jwt.verify');
+// transaksi \\
+Route::get('transaksi/{id}', 'transaksi@tampil_pinjam')->middleware('jwt.verify');
+Route::put('/transaksi/{id}', 'transaksi@update')->middleware('jwt.verify');
+Route::delete('/transaksi/{id}', 'transaksi@delete')->middleware('jwt.verify');
+Route::post('/transaksi', 'transaksi@store')->middleware('jwt.verify');

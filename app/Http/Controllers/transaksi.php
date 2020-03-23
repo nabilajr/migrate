@@ -2,31 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Modelanggota;
+use Illuminate\Support\Facades\Validator;
+use App\Modeltransaksi;
 
-class anggota extends Controller
+class transaksi extends Controller
 {
     public function store(Request $req)
     {
         $validator = Validator::make($req->all(), 
         [
-            'nama_anggota' => 'required',
-            'alamat' => 'required',
-            'telp'=> 'required',
+            'id_pelanggan' => 'required',
+            'id_petugas' => 'required',
+            'tgl_transaksi'=> 'required',
+            'tgl_selesai'=> 'required',
         ]);
 
         if($validator->fails()){
             return Response()->json($validator->errors());
         }
 
-        $anggota = Modelanggota::create([
-            'nama_anggota' => $req->nama_anggota,
-            'alamat' => $req->alamat,
-            'telp'=> $req->telp,
+        $laundry = Modeltransaksi::create([
+            'id_pelanggan' => $req->id_pelanggan,
+            'id_petugas' => $req->id_petugas,
+            'tgl_transaksi'=> $req->tgl_transaksi,
+            'tgl_selesai'=> $req->tgl_selesai,
         ]);
-        if($anggota){
+        if($laundry){
             return Response()->json(['status'=>1,'message'=>'Data Anggota berhasil ditambahkan!']);
         }
         else{
@@ -38,19 +40,21 @@ class anggota extends Controller
     {
         $validator=Validator::make($req->all(),
         [
-            'nama_anggota' => 'required',
-            'alamat' => 'required',
-            'telp'=> 'required',
+            'id_pelanggan' => 'required',
+            'id_petugas' => 'required',
+            'tgl_transaksi'=> 'required',
+            'tgl_selesai'=> 'required',
         ]);
         if($validator->fails()){
             return Response()->json($validator->errors());
         }
-        $anggota=Modelanggota::where('id',$id)->update([
-            'nama_anggota' => $req->nama_anggota,
-            'alamat' => $req->alamat,
-            'telp'=> $req->telp,
+        $laundry=Modeltransaksi::where('id',$id)->update([
+            'id_pelanggan' => $req->id_pelanggan,
+            'id_petugas' => $req->id_petugas,
+            'tgl_transaksi'=> $req->tgl_transaksi,
+            'tgl_selesai'=> $req->tgl_selesai,
         ]);
-        if($anggota){
+        if($laundry){
             return Response()->json(['status'=>1,'message'=>'Data Anggota berhasil diubah']);
         }
         else{
@@ -60,8 +64,8 @@ class anggota extends Controller
 
     public function delete($id)
     {
-        $anggota=Modelanggota::where('id',$id)->delete();
-        if($anggota){
+        $laundry=Modeltransaksi::where('id',$id)->delete();
+        if($laundry){
             return Response()->json(['status'=>1,'message'=>'Data Anggota berhasil dihapus']);
         }
         else{
@@ -70,13 +74,12 @@ class anggota extends Controller
     }
     public function tampil()
     {
-        $anggota=Modelanggota::all();
-        if($anggota){
-            return Response()->json(['Data'=>$anggota,'status'=>1]);
+        $laundry=Modeltransaksi::all();
+        if($laundry){
+            return Response()->json(['Data'=>$laundry,'status'=>1]);
         }
         else{
             return Response()->json(['status'=>0]);
         }
     }
 }
-
